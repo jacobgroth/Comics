@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from Datawordhelperfunctions import *
-
+from GraphClass import *
 
 filename="/Users/rgjg/Desktop/6865.2016.0411.0"
 
@@ -13,35 +13,35 @@ events = []
 ievt = []
 
 times = []
+trigtimes = []
 
-for i in xrange(1000):
+for i in xrange(len(lines)):
 
     if i+1 >= len(lines): break
 
     dw = timehelperfunc(lines[i])
 
     times.append(dw.getalltimes())
-
-    if timehelperfunc(lines[i]).isnewevent():
-        print "------------- event nr %s ------------" % i
+    trigtimes.append(dw.getactivetrigtimes())
 
     if timehelperfunc(lines[i+1]).isnewevent():
-        events.append(event(len(ievt)))
 
         listsum = np.zeros(len(times[0]))
+        trigsum = np.zeros(len(times[0]))
 
         for j in times:
             listsum += j
-        listsum = listsum.tolist()
 
-        print times
-        print "HEP" , listsum
+        for k in trigtimes:
+            trigsum += k
+
+        events.append( event(listsum.tolist(),trigsum.tolist()) )
+
         ievt = []
         times = []
+        trigtimes = []
 
 
 
-#    print dw.getalltimes(), lines[i]
 
-
-print len(events)
+graph = plotTOTs(events)

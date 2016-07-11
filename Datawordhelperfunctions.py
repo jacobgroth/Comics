@@ -64,13 +64,29 @@ class timehelperfunc(dataword):
     def getalltimes(self):
         return [self.gettime(x) for x in self.channelnames]
 
+    def gettrigtime(self):
+        return self.hextodec(self.datawordsdict["triggerCount"])
+
+    def getactivetrigtimes(self):
+        return [ self.gettrigtime() if x != 0 else x for x in self.getalltimes()]
 
 class event:
 
-    def __init__(self,size):
-        self.size = size
+
+    def diff(self,x,y):
+        if y-x > 0: return y-x
+        else: return 0
+
+    def __init__(self,edges,trigtimes):
+        self.TOTs = [ self.diff(edges[0],edges[1]), self.diff(edges[2],edges[3]), self.diff(edges[4],edges[5]), self.diff(edges[6],edges[7])  ]
+        self.trigtimes = [ trigtimes[0], trigtimes[2], trigtimes[4], trigtimes[6] ]
+
+    def getTOTs(self):
+        return self.TOTs
 
 
+    def gettrigtimes(self):
+        return self.trigtimes
 
 
 
