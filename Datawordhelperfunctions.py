@@ -84,7 +84,6 @@ class event:
     def getTOTs(self):
         return self.TOTs
 
-
     def gettrigtimes(self):
         return self.trigtimes
 

@@ -15,9 +15,12 @@ ievt = []
 times = []
 trigtimes = []
 
-for i in xrange(len(lines)):
+for i in xrange(10000):
+#for i in xrange(len(lines)):
 
     if i+1 >= len(lines): break
+
+    if ( (len(lines) - i ) % 50000 == 0 ): print "Der er %s begivenheder tilbage" % (len(lines) - i )
 
     dw = timehelperfunc(lines[i])
 
@@ -42,6 +45,17 @@ for i in xrange(len(lines)):
         trigtimes = []
 
 
+print " ---------- plotting ------------ Der er %s begivenheder der skal plottes" % len(events)
+
+#TOTgraph = plotTOTs(events)
+#TOTgraph.plotGraph(20,0,50)
+#TOTgraph.canvas.show()
+
+#coinGraph = plotCoin(events)
+#coinGraph.plotGraph(5,0,5)
+#coinGraph.canvas.show()
 
 
-graph = plotTOTs(events)
+TFGraph = plotTimeDiff(events)
+TFGraph.plotGraph(50,0,200)
+TFGraph.canvas.show()
