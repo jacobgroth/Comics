@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
+
 class graphbaseclass:
 
     def __init__(self):
