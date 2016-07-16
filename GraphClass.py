@@ -91,7 +91,7 @@ class plotTimeDiff(graphbaseclass):
 
     def plotGraph(self,num_bins,xbinlow,xbinhigh):
 
-        n, bins, patches = plt.hist(self.timeDiff, num_bins, (xbinlow, np.amax(self.timeDiff)/100), facecolor='green', alpha=0.5)
+        n, bins, patches = plt.hist(self.timeDiff, num_bins, (xbinlow, np.amax(self.timeDiff)/200), facecolor='green', alpha=0.5)
 
         plt.xlabel('Tid/sek')
         plt.title(r'Histogram af tids difference')
